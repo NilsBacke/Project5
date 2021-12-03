@@ -69,8 +69,7 @@ function getHtmlFromUrl(url) {
 
 		const onCrawlData = (data) => {
 			const { statusCode, headers, body } = parseHTTPResponse(data.toString())
-			sessionId = headers.sessionid ?? sessionId
-			client.off('data', onCrawlData)
+			sessionId = headers.sessionid ? headers.sessionid : sessionId
 
 			if (statusCode === '200') {
 				// everything is ok, extract the html
